@@ -1,9 +1,10 @@
-export default function Header(){   
-    return (     
-         <header>   
-        <h1>Manga Recommendation System</h1>
-        {/* Navigation and other header elements can be added here */}
-         </header>
-    
-    );
+import chefClaudeLogo from "./images/chef-claude-icon.png"
+
+export default function Header() {
+    return (
+        <header>
+            <img src={chefClaudeLogo}/>
+            <h1>Chef Claude</h1>
+        </header>
+    )
 }
