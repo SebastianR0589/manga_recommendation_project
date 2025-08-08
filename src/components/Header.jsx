@@ -1,9 +1,9 @@
-import chefClaudeLogo from "./images/chef-claude-icon.png"
+import mangaLogo from "../assets/images/manga.png";
 
 export default function Header() {
     return (
         <header>
-            <img src={chefClaudeLogo}/>
+            <img src={mangaLogo} alt="main icon"/>
             <h1>Chef Claude</h1>
         </header>
     )

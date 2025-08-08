@@ -1,9 +1,9 @@
 import React from "react"
-import IngredientsList from "./components/IngredientsList"
-import ClaudeRecipe from "./components/ClaudeRecipe"
-import { getRecipeFromMistral } from "./ai"
+import InputList from "./InputList"
+import RecommendationsList from "./RecommendationsList"
+import { getRecipeFromMistral } from "../ai.js"
 
-export default function Main() {
+export default function Input() {
     const [ingredients, setIngredients] = React.useState(
         ["chicken", "all the main spices", "corn", "heavy cream", "pasta"]
     )
@@ -32,13 +32,13 @@ export default function Main() {
             </form>
 
             {ingredients.length > 0 &&
-                <IngredientsList
+                <InputList
                     ingredients={ingredients}
                     getRecipe={getRecipe}
                 />
             }
 
-            {recipe && <ClaudeRecipe recipe={recipe} />}
+            {recipe && <RecommendationsList recipe={recipe} />}
         </main>
     )
 }

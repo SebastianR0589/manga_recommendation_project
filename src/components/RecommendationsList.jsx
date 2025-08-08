@@ -1,4 +1,4 @@
-export default function ClaudeRecipe(props) {
+export default function RecommendationsList(props) {
     return (
         <section>
             {props.recipe}
