@@ -1,44 +1,44 @@
 import React from "react"
 import InputList from "./InputList"
 import RecommendationsList from "./RecommendationsList"
-import { getRecipeFromMistral } from "../ai.js"
+import { getMangasFromMistral } from "../ai.js"
 
 export default function Input() {
-    const [ingredients, setIngredients] = React.useState(
-        ["chicken", "all the main spices", "corn", "heavy cream", "pasta"]
+    const [mangaInputs, setMangaInputs] = React.useState(
+        ["Vagabond", "Real", "Berserk", "Slam Dunk"]
     )
-    const [recipe, setRecipe] = React.useState("")
+    const [recommendations, setRecommendations] = React.useState("")
 
-    async function getRecipe() {
-        const recipeMarkdown = await getRecipeFromMistral(ingredients)
-        setRecipe(recipeMarkdown)
+    async function getRecommendations() {
+        const recommendationsMarkdown = await getMangasFromMistral(mangaInputs)
+        setRecommendations(recommendationsMarkdown)
     }
 
-    function addIngredient(formData) {
-        const newIngredient = formData.get("ingredient")
-        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+    function addManga(formData) {
+        const newMangaInput = formData.get("manga")
+        setMangaInputs(prevMangaInputs => [...prevMangaInputs, newMangaInput])
     }
 
     return (
         <main>
-            <form action={addIngredient} className="add-ingredient-form">
+            <form action={addManga} className="add-manga-form">
                 <input
                     type="text"
-                    placeholder="e.g. oregano"
-                    aria-label="Add ingredient"
-                    name="ingredient"
+                    placeholder="e.g. Vagabond, One Piece, etc."
+                    aria-label="Add Manga"
+                    name="manga"
                 />
-                <button>Add ingredient</button>
+                <button>Add Manga</button>
             </form>
 
-            {ingredients.length > 0 &&
+            {mangaInputs?.length > 0 &&
                 <InputList
-                    ingredients={ingredients}
-                    getRecipe={getRecipe}
+                    mangaInputs={mangaInputs}
+                    getRecommendations={getRecommendations}
                 />
             }
 
-            {recipe && <RecommendationsList recipe={recipe} />}
+            {recommendations && <RecommendationsList recommendations={recommendations} />}
         </main>
     )
 }

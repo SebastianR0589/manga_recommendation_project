@@ -1,17 +1,23 @@
 export default function InputList(props) {
-    const ingredientsListItems = props.ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
+
+    console.log("mangaInputs in InputList:", props.mangaInputs);
+console.log("Type:", typeof props.mangaInputs, Array.isArray(props.mangaInputs));
+
+const mangaList = Array.isArray(props.mangaInputs) ? props.mangaInputs : [];
+
+    const recommendationsListItems = mangaList.map(manga => (
+        <li key={manga}>{manga}</li>
     ))
     return (
         <section>
-            <h2>Ingredients on hand:</h2>
-            <ul className="ingredients-list" aria-live="polite">{ingredientsListItems}</ul>
-            {props.ingredients.length > 3 && <div className="get-recipe-container">
+            <h2>Mangas you enjoyed:</h2>
+            <ul className="mangainputs-list" aria-live="polite">{recommendationsListItems}</ul>
+            {props.mangaInputs?.length > 3 && <div className="get-recommendations-container">
                 <div>
-                    <h3>Ready for a recipe?</h3>
-                    <p>Generate a recipe from your list of ingredients.</p>
+                    <h3>Ready for some Manga recommendations?</h3>
+                    <p>Generate a list of Manga recommendations based on your taste.</p>
                 </div>
-                <button onClick={props.getRecipe}>Get a recipe</button>
+                <button onClick={props.getRecommendations}>Get recommendations</button>
             </div>}
         </section>
     )
