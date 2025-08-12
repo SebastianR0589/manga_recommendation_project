@@ -59,6 +59,12 @@ main {
     font-weight: 500;
 }
 
+.add-manga-form > button:disabled {
+    background-color: #D1D5DB;
+    color: #6B7280;
+    cursor: not-allowed;
+}
+
 .add-manga-form > button::before {
     content: "+";
     margin-right: 5px;
@@ -66,9 +72,8 @@ main {
 
 ul.mangainputs-list {
     margin-bottom: 48px;
-    padding-left: 40px; 
-    list-style-position: outside; 
-    text-align: left; 
+    list-style-position: inside; 
+    text-align: center; 
 }
 
 ul.mangainputs-list > li {
