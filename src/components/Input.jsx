@@ -5,7 +5,7 @@ import { getMangasFromMistral } from "../ai.js"
 
 export default function Input() {
     const [mangaInputs, setMangaInputs] = React.useState(
-        ["Vagabond", "Real", "Berserk", "Slam Dunk"]
+        [""]
     )
     const [recommendations, setRecommendations] = React.useState("")
 
