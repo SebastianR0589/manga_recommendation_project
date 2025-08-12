@@ -1,8 +1,5 @@
 export default function InputList(props) {
 
-    console.log("mangaInputs in InputList:", props.mangaInputs);
-console.log("Type:", typeof props.mangaInputs, Array.isArray(props.mangaInputs));
-
 const mangaList = Array.isArray(props.mangaInputs) ? props.mangaInputs : [];
 
     const recommendationsListItems = mangaList.map(manga => (
