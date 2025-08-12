@@ -13,8 +13,10 @@ export default function Input() {
 
     const [completionCheckbox, setCompletionCheckbox] = React.useState(false)
 
+    const [lengthSelect, setLengthSelect] = React.useState("")
+
     async function getRecommendations() {
-        const recommendationsMarkdown = await getMangasFromMistral(mangaInputs, completionCheckbox)
+        const recommendationsMarkdown = await getMangasFromMistral(mangaInputs, completionCheckbox, lengthSelect)
         setRecommendations(recommendationsMarkdown)
     }
 
@@ -30,6 +32,10 @@ export default function Input() {
 
     function handleCheckboxChange(event) {
         setCompletionCheckbox(event.target.checked)    
+    }
+
+    function handleLengthChange(event) {
+        setLengthSelect(event.target.value)
     }
 
     return (
@@ -48,6 +54,16 @@ export default function Input() {
              <div className="only-completed-checkbox">
    
     <label><input type="checkbox" id="onlyCompleted" name="onlyCompleted" onChange={handleCheckboxChange}/>Do you only want completed Manga series?</label>
+  </div>
+
+  <div className="manga-length-container">
+    <label htmlFor="mangaLength">How long should the Manga series be?</label>
+    <select name="mangaLength" id="mangaLength" value={lengthSelect} onChange={handleLengthChange}>
+        <option value="anyLength" >Doesn't matter</option>
+      <option value="1-5 Volumes">Short (1-5 Volumes)</option> 
+        <option value="5-15 Volumes">Medium (5-15 Volumes)</option>
+        <option value="15+ Volumes">Long (15+ Volumes)</option>
+    </select>
   </div>
 
             {mangaInputs?.length > 0 &&
