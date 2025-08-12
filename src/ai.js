@@ -14,7 +14,8 @@ export async function getMangasFromMistral(mangasArr) {
             model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
             messages: [
                 { role: "system", content: SYSTEM_PROMPT },
-                { role: "user", content: `I have ${mangasString}. Please give me a list of recommendations what I should read next!` },
+                { role: "user", content: `I have ${mangasString}. Please give me a list of recommendations what I should read next!`},
+              
             ],
             max_tokens: 1024,
         })

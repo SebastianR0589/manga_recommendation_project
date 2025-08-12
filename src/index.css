@@ -118,4 +118,7 @@ ul.mangainputs-list > li {
 
 .suggested-recommendations-container ul li, .suggested-recommendations-container ol li {
     margin-bottom: 8px;
+    padding-left: 40px; 
+    list-style-position: outside; 
+    text-align: left; 
 }
