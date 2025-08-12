@@ -70,13 +70,26 @@ main {
     margin-right: 5px;
 }
 
-ul.mangainputs-list {
+.only-completed-checkbox label {
+  display: flex;
+  flex-direction: row-reverse; 
+  justify-content: center;     
+  align-items: center;         
+  gap: 0.5rem;
+  margin-top: 20px;
+}
+
+.only-completed-checkbox input[type="checkbox"] {
+  accent-color: black;
+} 
+
+ol.mangainputs-list {
     margin-bottom: 48px;
     list-style-position: inside; 
     text-align: center; 
 }
 
-ul.mangainputs-list > li {
+ol.mangainputs-list > li {
     color: #475467;
     line-height: 28px;
 }

@@ -8,7 +8,7 @@ const mangaList = Array.isArray(props.mangaInputs) ? props.mangaInputs : [];
     return (
         <section>
             <h2>Mangas you enjoyed:</h2>
-            <ul className="mangainputs-list" aria-live="polite">{recommendationsListItems}</ul>
+            <ol className="mangainputs-list" aria-live="polite">{recommendationsListItems}</ol>
             {props.mangaInputs?.length >= 1 && <div className="get-recommendations-container">
                 <div>
                     <h3>Ready for some Manga recommendations?</h3>

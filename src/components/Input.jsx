@@ -11,8 +11,10 @@ export default function Input() {
 
     const [errorMessage, setErrorMessage] = React.useState("")
 
+    const [completionCheckbox, setCompletionCheckbox] = React.useState(false)
+
     async function getRecommendations() {
-        const recommendationsMarkdown = await getMangasFromMistral(mangaInputs)
+        const recommendationsMarkdown = await getMangasFromMistral(mangaInputs, completionCheckbox)
         setRecommendations(recommendationsMarkdown)
     }
 
@@ -24,6 +26,10 @@ export default function Input() {
         }else{
             setErrorMessage("Please enter a valid manga name.")
             }
+    }
+
+    function handleCheckboxChange(event) {
+        setCompletionCheckbox(event.target.checked)    
     }
 
     return (
@@ -39,6 +45,10 @@ export default function Input() {
                 <button disabled={mangaInputs.length >= 5}>Add Manga</button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
+             <div className="only-completed-checkbox">
+   
+    <label><input type="checkbox" id="onlyCompleted" name="onlyCompleted" onChange={handleCheckboxChange}/>Do you only want completed Manga series?</label>
+  </div>
 
             {mangaInputs?.length > 0 &&
                 <InputList

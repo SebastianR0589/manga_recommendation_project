@@ -7,14 +7,20 @@ You are an assistant that receives a list of mangas that a user has enjoyed very
 
 const hf = new HfInference(import.meta.env.VITE_HF_ACCESS_TOKEN)
 
-export async function getMangasFromMistral(mangasArr) {
+export async function getMangasFromMistral(mangasArr, completionBoolean) {
     const mangasString = mangasArr.join(", ")
+    let onlyCompletedMangas = ""
+     
+    if (completionBoolean) {
+        onlyCompletedMangas = "I only want completed Manga series."
+    }
+ 
     try {
         const response = await hf.chatCompletion({
             model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
             messages: [
                 { role: "system", content: SYSTEM_PROMPT },
-                { role: "user", content: `I have ${mangasString}. Please give me a list of recommendations what I should read next!`},
+                { role: "user", content: `I have ${mangasString}. Please give me a list of recommendations what I should read next! ${onlyCompletedMangas}` },
               
             ],
             max_tokens: 1024,
