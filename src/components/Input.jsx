@@ -7,6 +7,8 @@ export default function Input() {
     const [mangaInputs, setMangaInputs] = React.useState(
         []
     )
+    const [excludedMangaInputs, setExcludedMangaInputs] = React.useState([]);
+
     const [recommendations, setRecommendations] = React.useState("")
 
     const [errorMessage, setErrorMessage] = React.useState("")
@@ -16,15 +18,15 @@ export default function Input() {
     const [lengthSelect, setLengthSelect] = React.useState("")
 
     async function getRecommendations() {
-        const recommendationsMarkdown = await getMangasFromMistral(mangaInputs, completionCheckbox, lengthSelect)
+        const recommendationsMarkdown = await getMangasFromMistral(mangaInputs, excludedMangaInputs, completionCheckbox, lengthSelect)
         setRecommendations(recommendationsMarkdown)
     }
 
-    function addManga(formData) {
-        const newMangaInput = formData.get("manga")
+    function addManga(formData, mangaInput, setMangaInputsFunctions) {
+        const newMangaInput = formData.get(mangaInput)
         setErrorMessage("") 
         if(newMangaInput.trim() !== ""){
-        setMangaInputs(prevMangaInputs => [...prevMangaInputs, newMangaInput])
+        setMangaInputsFunctions(prevMangaInputs => [...prevMangaInputs, newMangaInput])
         }else{
             setErrorMessage("Please enter a valid manga name.")
             }
@@ -41,7 +43,7 @@ export default function Input() {
     return (
         <main><div>
             <h2>Please enter up to five Mangas you enjoyed</h2>
-            <form action={addManga} className="manga-form add-manga-form">
+            <form action={(formData) => addManga(formData, "manga", setMangaInputs)} className="manga-form add-manga-form">
                 <input
                     type="text"
                     placeholder="e.g. Vagabond, Real, etc."
@@ -55,13 +57,13 @@ export default function Input() {
             <div>
             <h2>Please enter up to five Mangas you want excluded</h2>
             
-            <form action={addManga} className="manga-form exclude-manga-form">
+            <form action={(formData) => addManga(formData, "excluded", setExcludedMangaInputs)} className="manga-form exclude-manga-form">
                 
                 <input
                     type="text"
                     placeholder="e.g. Attack on Titan, Frieren, etc."
                     aria-label="Exclude Manga"
-                    name="excluded-manga"                />
+                    name="excluded"                />
                 <button  disabled={mangaInputs.length >= 5}>Exclude Manga</button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
@@ -81,9 +83,10 @@ export default function Input() {
     </select>
   </div>
 
-            {mangaInputs?.length > 0 &&
+            {(mangaInputs.length > 0 || excludedMangaInputs.length > 0) &&
                 <InputList
                     mangaInputs={mangaInputs}
+                    excludedMangaInputs={excludedMangaInputs}
                     getRecommendations={getRecommendations}
                 />
             }
