@@ -14,9 +14,9 @@ Since I am using a AI, I had to use a personal token, which I cannot upload to g
 **GitHub Repo:** [Link to repo](https://github.com/SebastianR0589/manga_recommendation_project)
 
 **Screenshots:**
-![Screenshot 1](./screenshots/main_interface.png)
+![Screenshot 1](./screenshots/main_interface.PNG)
 ![Screenshot 2](./screenshots/main_filled_out.PNG)
-![Screenshot 3](./screenshots/recommendation_response.png)
+![Screenshot 3](./screenshots/recommendation_response.PNG)
 
 **Features:**
 - Fetch user preverences 
