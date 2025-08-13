@@ -31,43 +31,71 @@ main {
     padding: 30px 30px 10px;
 }
 
-.add-manga-form {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    height: 38px;
+.manga-form {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  height: 38px;
 }
 
-.add-manga-form > input {
-    border-radius: 6px;
-    border: 1px solid #D1D5DB;
-    padding: 9px 13px;
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
-    flex-grow: 1;
-    min-width: 150px;
-    max-width: 400px;
+.manga-form > input {
+  border-radius: 6px;
+  border: 1px solid #D1D5DB;
+  padding: 9px 13px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  flex-grow: 1;
+  min-width: 150px;
+  max-width: 400px;
 }
 
+/* Shared disabled button state */
+.manga-form > button:disabled {
+  color: #6B7280;
+  cursor: not-allowed;
+}
+
+/* Add Manga (black button + plus sign) */
 .add-manga-form > button {
-    font-family: Inter, sans-serif;
-    border-radius: 6px;
-    border: none;
-    background-color: #141413;
-    color: #FAFAF8;
-    width: 150px;
-    font-size: 0.875rem;
-    font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  background-color: #141413;
+  color: #FAFAF8;
+  width: 150px;
+  font-size: 0.875rem;
+  font-weight: 500;
 }
 
 .add-manga-form > button:disabled {
-    background-color: #D1D5DB;
-    color: #6B7280;
-    cursor: not-allowed;
+  background-color: #D1D5DB;
 }
 
 .add-manga-form > button::before {
-    content: "+";
-    margin-right: 5px;
+  content: "+";
+  margin-right: 5px;
+}
+
+/* Exclude Manga (red button, no plus sign, button first) */
+.exclude-manga-form {
+  flex-direction: row-reverse; /* button first, input second */
+}
+
+.exclude-manga-form > button {
+  border-radius: 6px;
+  border: none;
+  background-color: #c62828;
+  color: #FAFAF8;
+  width: 150px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.exclude-manga-form > button:disabled {
+  background-color: #ef9a9a;
+}
+
+.exclude-manga-form > button::before {
+  content: "-";
+  margin-right: 5px;
 }
 
 .only-completed-checkbox label {

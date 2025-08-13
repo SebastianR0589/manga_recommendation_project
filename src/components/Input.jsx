@@ -39,18 +39,33 @@ export default function Input() {
     }
 
     return (
-        <main>
+        <main><div>
             <h2>Please enter up to five Mangas you enjoyed</h2>
-            <form action={addManga} className="add-manga-form">
+            <form action={addManga} className="manga-form add-manga-form">
                 <input
                     type="text"
-                    placeholder="e.g. Vagabond, One Piece, etc."
+                    placeholder="e.g. Vagabond, Real, etc."
                     aria-label="Add Manga"
                     name="manga"
                 />
                 <button disabled={mangaInputs.length >= 5}>Add Manga</button>
             </form>
             {errorMessage && <p className="error-message">{errorMessage}</p>}
+            </div>
+            <div>
+            <h2>Please enter up to five Mangas you want excluded</h2>
+            
+            <form action={addManga} className="manga-form exclude-manga-form">
+                
+                <input
+                    type="text"
+                    placeholder="e.g. Attack on Titan, Frieren, etc."
+                    aria-label="Exclude Manga"
+                    name="excluded-manga"                />
+                <button  disabled={mangaInputs.length >= 5}>Exclude Manga</button>
+            </form>
+            {errorMessage && <p className="error-message">{errorMessage}</p>}
+            </div>
              <div className="only-completed-checkbox">
    
     <label><input type="checkbox" id="onlyCompleted" name="onlyCompleted" onChange={handleCheckboxChange}/>Do you only want completed Manga series?</label>
