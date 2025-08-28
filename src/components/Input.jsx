@@ -15,6 +15,14 @@ export default function Input() {
 
   const [lengthSelect, setLengthSelect] = React.useState("");
 
+     const recommendationsSection = React.useRef(null)
+    
+    React.useEffect(() => {
+        if (recommendations !== "" && recommendationsSection.current !== null) {
+            recommendationsSection.current.scrollIntoView({behavior: "smooth"})
+        }
+    }, [recommendations])
+
   async function getRecommendations() {
     const recommendationsMarkdown = await getMangasFromMistral(
       mangaInputs,
@@ -114,6 +122,7 @@ export default function Input() {
 
       {(mangaInputs.length > 0 || excludedMangaInputs.length > 0) && (
         <InputList
+          ref={recommendationsSection}
           mangaInputs={mangaInputs}
           excludedMangaInputs={excludedMangaInputs}
           getRecommendations={getRecommendations}

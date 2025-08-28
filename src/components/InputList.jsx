@@ -22,7 +22,7 @@ export default function InputList(props) {
       </ol>
       {props.mangaInputs?.length >= 1 && (
         <div className="get-recommendations-container">
-          <div>
+          <div ref={props.ref}>
             <h3>Ready for some Manga recommendations?</h3>
             <p>Generate a list of Manga recommendations based on your taste.</p>
           </div>
